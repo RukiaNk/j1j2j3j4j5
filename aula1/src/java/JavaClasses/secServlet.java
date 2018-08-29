@@ -1,3 +1,5 @@
+package JavaClasses;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -6,7 +8,6 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,9 +18,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author michellynk
  */
-@WebServlet(urlPatterns = {"/CadastrarUsuarioServlet"})
-public class CadastrarUsuarioServlet extends HttpServlet {
-    ArrayList<Usuario> users = new ArrayList();
+@WebServlet(urlPatterns = {"/secServlet"})
+public class secServlet extends HttpServlet {
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -31,25 +32,33 @@ public class CadastrarUsuarioServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                
-        String nome = request.getParameter("nome");
-        String login = request.getParameter("login");
-        String senha = request.getParameter("senha");
-        
-        Usuario newUser = new Usuario("nome", "login", "senha");
-        users.add(newUser);
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html><html><head>");
-            out.println("<title>Servlet CadastrarUsuarioServlet</title>");            
-            out.println("</head><body>");
-            out.println("<h1> Usuario cadastrado com sucesso</h1>");
-            out.println("<a href=\"PortalServlet\"> Usuario cadastrado com sucesso</h1>");
-            for (Usuario u : users) {
-                out.println("<tr>"+u.nome+" "+u.login+" "+u.senha);
-            }
-            out.println("</body></html>");
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+        
+            out.println("<title>Exercicio 2</title>");
+            out.println("<style> .nome{font-family: Verdana, Geneva, Tahoma, sans-serif; color: blue} .ende{color: red;} .cidade{color:green;}</style>");
+            
+            out.println("</head>");
+            out.println("<body>");
+            
+            out.println("<h1>Exercicio 2 - Aula 3</h1>");
+            
+            out.println("<p class=\"nome\">Marcos Henrique Bastos</p>");
+            out.println("<p class=\"ende\">(41)984608890 Rua Nicaragua, n9</p>");
+            out.println("<p class=\"cidade\">Curitiba</p>");
+            out.println("<a href=\"https://www.google.com/\">Google</a>");
+
+            out.println("<p class=\"nome\">Michelly Narita Kuriyama</p>");
+            out.println("<p class=\"ende\">(41)99147-7419 Rua Terra Boa, n280</p>");
+            out.println("<p class=\"cidade\">Curitiba</p>");
+            out.println("<a href=\"https://www.google.com/\">Google</a>");
+            
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 

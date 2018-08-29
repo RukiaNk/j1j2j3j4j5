@@ -1,3 +1,5 @@
+package JavaClasses;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -14,10 +16,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author michellynk
+ * @author ananicole
  */
-@WebServlet(urlPatterns = {"/secServlet"})
-public class secServlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/PortalServlet"})
+public class PortalServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,32 +32,34 @@ public class secServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-        
-            out.println("<title>Exercicio 2</title>");
-            out.println("<style> .nome{font-family: Verdana, Geneva, Tahoma, sans-serif; color: blue} .ende{color: red;} .cidade{color:green;}</style>");
-            
+            out.println("<title>Formulario</title>");            
             out.println("</head>");
             out.println("<body>");
-            
-            out.println("<h1>Exercicio 2 - Aula 3</h1>");
-            
-            out.println("<p class=\"nome\">Marcos Henrique Bastos</p>");
-            out.println("<p class=\"ende\">(41)984608890 Rua Nicaragua, n9</p>");
-            out.println("<p class=\"cidade\">Curitiba</p>");
-            out.println("<a href=\"https://www.google.com/\">Google</a>");
-
-            out.println("<p class=\"nome\">Michelly Narita Kuriyama</p>");
-            out.println("<p class=\"ende\">(41)99147-7419 Rua Terra Boa, n280</p>");
-            out.println("<p class=\"cidade\">Curitiba</p>");
-            out.println("<a href=\"https://www.google.com/\">Google</a>");
-            
-            out.println("</body>");
+            out.println("<form action=\"CadastrarUsuarioServlet\" method=\"POST\">");
+            out.println("<div class=\"form-group\">");
+            out.println("<label for=\"formGroupExampleInput\">Nome</label>");
+            out.println("<input type=\"text\" class=\"form-control\" id=\"formGroupExampleInput\" placeholder=\"Nome\">");
+            out.println("</div>");
+            out.println("<div class=\"form-group\">");
+            out.println("<label for=\"formGroupExampleInput2\">Login</label>");
+            out.println("<input type=\"text\" class=\"form-control\" id=\"formGroupExampleInput2\" placeholder=\"Login\">");
+            out.println("</div>");
+            out.println("<div class=\"form-group\">");
+            out.println("<label for=\"formGroupExampleInput2\">Senha</label>");
+            out.println("<input type=\"password\" class=\"form-control\" id=\"formGroupExampleInput2\" placeholder=\"Senha\">");
+            out.println("</div>");
+            out.println("<div>");
+            out.println("<a href=\"CadastrarUsuarioServlet\">Salvar</a>");
+            out.println("<a href=\"LogoutServlet\">Deslogar</a>");
+            out.println("</div>");
+            out.println("</form>");
             out.println("</html>");
         }
     }

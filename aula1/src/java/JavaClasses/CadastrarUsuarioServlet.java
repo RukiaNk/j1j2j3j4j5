@@ -1,3 +1,5 @@
+package JavaClasses;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -6,6 +8,7 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,11 +17,11 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author ananicole
+ * @author michellynk
  */
-@WebServlet(urlPatterns = {"/PortalServlet"})
-public class PortalServlet extends HttpServlet {
-
+@WebServlet(urlPatterns = {"/CadastrarUsuarioServlet"})
+public class CadastrarUsuarioServlet extends HttpServlet {
+    ArrayList<Usuario> users = new ArrayList();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -30,35 +33,25 @@ public class PortalServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+                
+        String nome = request.getParameter("nome");
+        String login = request.getParameter("login");
+        String senha = request.getParameter("senha");
         
+        Usuario newUser = new Usuario("nome", "login", "senha");
+        users.add(newUser);
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Formulario</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<form action=\"CadastrarUsuarioServlet\" method=\"POST\">");
-            out.println("<div class=\"form-group\">");
-            out.println("<label for=\"formGroupExampleInput\">Nome</label>");
-            out.println("<input type=\"text\" class=\"form-control\" id=\"formGroupExampleInput\" placeholder=\"Nome\">");
-            out.println("</div>");
-            out.println("<div class=\"form-group\">");
-            out.println("<label for=\"formGroupExampleInput2\">Login</label>");
-            out.println("<input type=\"text\" class=\"form-control\" id=\"formGroupExampleInput2\" placeholder=\"Login\">");
-            out.println("</div>");
-            out.println("<div class=\"form-group\">");
-            out.println("<label for=\"formGroupExampleInput2\">Senha</label>");
-            out.println("<input type=\"password\" class=\"form-control\" id=\"formGroupExampleInput2\" placeholder=\"Senha\">");
-            out.println("</div>");
-            out.println("<div>");
-            out.println("<a href=\"CadastrarUsuarioServlet\">Salvar</a>");
-            out.println("<a href=\"LogoutServlet\">Deslogar</a>");
-            out.println("</div>");
-            out.println("</form>");
-            out.println("</html>");
+            out.println("<!DOCTYPE html><html><head>");
+            out.println("<title>Servlet CadastrarUsuarioServlet</title>");            
+            out.println("</head><body>");
+            out.println("<h1> Usuario cadastrado com sucesso</h1>");
+            out.println("<a href=\"PortalServlet\"> Usuario cadastrado com sucesso</h1>");
+            for (Usuario u : users) {
+                out.println("<tr>"+u.nome+" "+u.login+" "+u.senha);
+            }
+            out.println("</body></html>");
         }
     }
 
